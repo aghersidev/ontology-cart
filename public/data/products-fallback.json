@@ -1,0 +1,70 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Camiseta Algodón Orgánico",
+    "description": "Camiseta de alta calidad, suave al tacto y respetuosa con el medio ambiente.",
+    "image": ["https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500"],
+    "brand": { "@type": "Brand", "name": "EcoStyle" },
+    "color": "Azul Marino",
+    "size": "L",
+    "material": "100% Algodón",
+    "offers": {
+      "@type": "Offer",
+      "price": 25.99,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Leche Entera 1L",
+    "description": "Leche fresca de vaca pastoreada, enriquecida con Calcio.",
+    "image": ["https://images.unsplash.com/photo-1550583724-125581cc254b?w=500"],
+    "brand": { "@type": "Brand", "name": "Granja Sol" },
+    "gtin13": "8412345678901",
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "calories": "65 kcal",
+      "fatContent": "3.6g"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": 1.15,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MenuItem",
+    "name": "Pizza Napolitana",
+    "description": "Masa madre fermentada 48h con tomate San Marzano y albahaca fresca.",
+    "image": ["https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=500"],
+    "ingredients": "Tomate, Mozzarella de búfala, Albahaca, Aceite de Oliva",
+    "suitableForDiet": ["https://schema.org/VegetarianDiet"],
+    "offers": {
+      "@type": "Offer",
+      "price": 14.50,
+      "priceCurrency": "EUR"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Zapatillas de Running",
+    "description": "Zapatillas diseñadas para largas distancias con amortiguación reactiva.",
+    "image": ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"],
+    "brand": { "@type": "Brand", "name": "SportMax" },
+    "color": "Rojo/Negro",
+    "size": "42",
+    "material": "Malla sintética",
+    "offers": {
+      "@type": "Offer",
+      "price": 89.95,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/LowStock"
+    }
+  }
+]
