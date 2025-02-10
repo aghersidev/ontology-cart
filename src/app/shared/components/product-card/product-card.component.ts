@@ -1,53 +1,47 @@
 import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SchemaProduct, ClothingProduct, RestaurantMenuItem, GroceryProduct, isClothing, isMenuItem, isGrocery } from '../../models/product.model';
-
 @Component({
   selector: 'app-product-card',
   standalone: true,
   imports: [CommonModule],
   template: `
     <article class="card">
-      <div class="image-container">
-        <img [src]="product().image?.[0] || 'assets/no-image.png'" [alt]="product().name">
-        <span class="type-badge">{{ product()['@type'] }}</span>
-      </div>
+        <img [src]="product().image?.[0] || 'assets/no-image.png'" 
+             class="card-img-top object-fit-cover" 
+             style="height: 180px;"
+             [alt]="product().name">
+             
+      <div class="card-body d-flex flex-column">
+        
+        <h5 class="card-title">{{ product().name }}</h5>
 
-      <div class="content">
-        <h3>{{ product().name }}</h3>
+          @if (clothingData(); as p) {
+              <span class="card-text"><strong>Size:</strong> {{ p.size }}</span>
+              <span><strong>Color:</strong> {{ p.color }}</span>
+          }
 
-        @if (clothingData(); as p) {
-          <div class="specs clothing">
-            <span><strong>Size:</strong> {{ p.size }}</span>
-            <span><strong>Color:</strong> {{ p.color }}</span>
-          </div>
-        }
+          @if (menuData(); as p) {
+            <p class="card-text">
+              <strong>Ingredients:</strong> {{ p.ingredients }}
+            </p>
+          }
 
-        @if (menuData(); as p) {
-          <div class="specs food">
-            <small><strong>Ingredients:</strong> {{ p.ingredients }}</small>
-          </div>
-        }
+          @if (groceryData(); as p) {
+            <div class="card-text"><strong>GTIN:</strong> {{ p.gtin13 }}</div>
+          }
 
-        @if (groceryData(); as p) {
-          <div class="specs grocery">
-            <small><strong>GTIN:</strong> {{ p.gtin13 }}</small>
-          </div>
-        }
-
-        <div class="footer">
-          <span class="price">
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top border-dark-subtle">
+          <span class="fw-bold text-dark">
             {{ product().offers?.price }} {{ product().offers?.priceCurrency }}
           </span>
+          <button class="btn btn-sm btn-light border shadow-sm">Details</button>
         </div>
       </div>
     </article>
   `,
   styles: [`
-    .specs { margin-top: 10px; padding: 8px; border-radius: 4px; font-size: 0.85rem; }
-    .clothing { background: #e3f2fd; color: #1565c0; }
-    .food { background: #f1f8e9; color: #33691e; }
-    .grocery { background: #fff3e0; color: #e65100; }
+    :host { display: block; width: 260px; }
   `]
 })
 export class ProductCardComponent {
