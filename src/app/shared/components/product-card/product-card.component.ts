@@ -15,7 +15,7 @@ import { SchemaProduct, ClothingProduct, RestaurantMenuItem, GroceryProduct, isC
       <div class="card-body d-flex flex-column">
         
         <h5 class="card-title">{{ product().name }}</h5>
-
+        <h6 class="card-subtitle mb-2 text-body-secondary"> {{ product()['@type'] }} </h6>
           @if (clothingData(); as p) {
               <span class="card-text"><strong>Size:</strong> {{ p.size }}</span>
               <span><strong>Color:</strong> {{ p.color }}</span>

@@ -12,8 +12,9 @@ import { SchemaProduct } from '../../shared/models/product.model';
     <section class="container">
       <h1>Catalogue of Products</h1>
 
-      <div class="grid">
-        @for (item of products(); track item.name) {
+      <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4">
+      
+       @for (item of products(); track item.name) {
           <app-product-card [product]="item" />
         } @empty {
           <p>No products found.</p>
