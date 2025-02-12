@@ -16,21 +16,20 @@ import { SchemaProduct, ClothingProduct, RestaurantMenuItem, GroceryProduct, isC
         
         <h5 class="card-title">{{ product().name }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary"> {{ product()['@type'] }} </h6>
-          @if (clothingData(); as p) {
-              <span class="card-text"><strong>Size:</strong> {{ p.size }}</span>
+          <p class="card-text d-flex flex-column">
+            @if (clothingData(); as p) {
+              <span><strong>Size:</strong> {{ p.size }}</span>
               <span><strong>Color:</strong> {{ p.color }}</span>
           }
 
           @if (menuData(); as p) {
-            <p class="card-text">
-              <strong>Ingredients:</strong> {{ p.ingredients }}
-            </p>
+              <span><strong>Ingredients:</strong> {{ p.ingredients }}</span>
           }
 
           @if (groceryData(); as p) {
-            <div class="card-text"><strong>GTIN:</strong> {{ p.gtin13 }}</div>
+              <span><strong>GTIN:</strong> {{ p.gtin13 }}</span>
           }
-
+          </p>
         <div class="d-flex justify-content-between align-items-center pt-2 border-top border-dark-subtle">
           <span class="fw-bold text-dark">
             {{ product().offers?.price }} {{ product().offers?.priceCurrency }}
