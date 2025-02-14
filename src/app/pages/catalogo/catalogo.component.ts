@@ -22,14 +22,6 @@ import { SchemaProduct } from '../../shared/models/product.model';
       </div>
     </section>
   `,
-  styles: `
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 1rem;
-    }
-  `
 })
 export class CatalogoComponent implements OnInit {
   private productRepoService = inject(ProductRepositoryService);
