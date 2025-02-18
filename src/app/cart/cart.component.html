@@ -1,0 +1,21 @@
+<!-- cart.component.html -->
+<section class="container mt-4">
+  <h3>Cart</h3>
+
+  @for (item of cart$ | async; track item.ref.id) {
+    <div class="d-flex justify-content-between border-bottom py-2">
+      <div>
+        <strong>{{ item.ref.name }}</strong>
+        <small class="text-muted">({{ item.ref['@type'] }})</small>
+      </div>
+      <div>
+        {{ item.quantity }} × {{ item.ref.price }} {{ item.ref.currency }}
+        <button class="btn btn-sm btn-link" (click)="cart.remove(item.ref.id)">✕</button>
+      </div>
+    </div>
+  }
+
+  <div class="text-end fw-bold mt-3">
+    Total: {{ cart.total() }}
+  </div>
+</section>

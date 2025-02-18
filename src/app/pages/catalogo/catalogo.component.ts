@@ -14,7 +14,7 @@ import { SchemaProduct } from '../../shared/models/product.model';
 
       <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4">
       
-       @for (item of products(); track item.name) {
+       @for (item of products(); track item.id) {
           <app-product-card [product]="item" />
         } @empty {
           <p>No products found.</p>
@@ -26,7 +26,7 @@ import { SchemaProduct } from '../../shared/models/product.model';
 export class CatalogoComponent implements OnInit {
   private productRepoService = inject(ProductRepositoryService);
   
-  products = signal<SchemaProduct[]>([]);
+  products = signal<(SchemaProduct & { id: string })>([]);
 
   ngOnInit(): void {
     this.productRepoService.getProducts().subscribe({
