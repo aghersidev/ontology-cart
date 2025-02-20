@@ -18,7 +18,7 @@ export class ProductRepositoryService {
   ) { }
 
   getProducts(): Observable<(SchemaProduct & { id: string })[]> {
-    const cachedData = this.cache.get<(SchemaProduct & { id: string })[]>(this.CACHE_KEY);
+    const cachedData = this.cache.get(this.CACHE_KEY);
     if (cachedData) {
       console.log('Loading from cache...');
       return of(cachedData);
@@ -34,6 +34,21 @@ export class ProductRepositoryService {
       catchError(() => this.loadFromFallback())
     );
   }
+  private loadFromFallback(): Observable<(SchemaProduct & { id: string })[]> {
+    console.warn('API Failed. Trying JSON...');
+    return this.http.get<(SchemaProduct)[]>(this.JSON_URL).pipe(
+      map(list =>
+        list.map(p => ({
+          id: this.deriveId(p),
+          ...p
+        }))
+      ), tap(data => this.cache.set(this.CACHE_KEY, data)),
+      catchError(err => {
+        console.error('Failed.');
+        return throwError(() => new Error('Error: No sources for data.'));
+      })
+    );
+  }
   private deriveId(p: SchemaProduct): string {
     return [
       p['@type'],
@@ -43,14 +58,4 @@ export class ProductRepositoryService {
     ].filter(Boolean).join('|');
   }
 
-  private loadFromFallback(): Observable<(SchemaProduct & { id: string })[]> {
-    console.warn('API Failed. Trying JSON...');
-    return this.http.get<(SchemaProduct & { id: string })[]>(this.JSON_URL).pipe(
-      tap(data => this.cache.set(this.CACHE_KEY, data)),
-      catchError(err => {
-        console.error('Failed.');
-        return throwError(() => new Error('Error: No sources for data.'));
-      })
-    );
-  }
 }
