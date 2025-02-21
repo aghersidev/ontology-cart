@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductRepositoryService } from '../../core/services/product-repository.service';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { SchemaProduct } from '../../shared/models/product.model';
+import { CartUiService } from '../../cart/cart-ui.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -19,14 +20,17 @@ import { SchemaProduct } from '../../shared/models/product.model';
         } @empty {
           <p>No products found.</p>
         }
-      </div>
+      </div><button class="btn btn-dark mb-3" (click)="openCart()">
+  View Cart
+</button>
+
     </section>
   `,
 })
 export class CatalogoComponent implements OnInit {
   private productRepoService = inject(ProductRepositoryService);
   
-  products = signal<(SchemaProduct & { id: string })>([]);
+  products = signal<(SchemaProduct & { id: string })[]>([]);
 
   ngOnInit(): void {
     this.productRepoService.getProducts().subscribe({
@@ -34,4 +38,11 @@ export class CatalogoComponent implements OnInit {
       error: (err) => console.error(err)
     });
   }
+
+private cartUi = inject(CartUiService);
+
+openCart() {
+  this.cartUi.show();
+}
+
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { CartDrawerComponent } from "./cart-drawer/cart-drawer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CartDrawerComponent],
   template: `
     <nav>
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
@@ -12,7 +13,9 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     </nav>
 
     <main>
-      <router-outlet></router-outlet>
+      <router-outlet></router-outlet><router-outlet />
+<app-cart-drawer />
+
     </main>
   `
 })
