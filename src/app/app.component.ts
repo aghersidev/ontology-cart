@@ -19,4 +19,4 @@ import { CartDrawerComponent } from "./cart-drawer/cart-drawer.component";
     </main>
   `
 })
-export class AppComponent {}
+export class AppComponent { }
