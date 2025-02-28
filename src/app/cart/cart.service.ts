@@ -1,56 +1,45 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal, computed } from '@angular/core';
 import { CartItem, CartProductRef } from '../shared/models/cart.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private readonly KEY = 'cart';
-  private items: CartItem[] = [];
-  private subject = new BehaviorSubject<CartItem[]>([]);
-  cart$ = this.subject.asObservable();
+  private items = signal<CartItem[]>(this.load());
 
-  constructor() { this.load(); }
-
-  private load() {
-    const raw = localStorage.getItem(this.KEY);
-    if (!raw) return;
-    try {
-      this.items = JSON.parse(raw);
-      this.subject.next([...this.items]);
-    } catch {
-      this.items = [];
-      localStorage.removeItem(this.KEY);
-    }
-  }
-
-  private sync() {
-    localStorage.setItem(this.KEY, JSON.stringify(this.items));
-    this.subject.next([...this.items]);
-  }
+  cart = this.items.asReadonly();
 
   addToCart(ref: CartProductRef, qty = 1) {
-    const item = this.items.find(i => i.ref.id === ref.id);
-    if (item) item.quantity += qty;
-    else this.items.push({ ref, quantity: qty });
-    this.sync();
+    this.items.update(items => {
+      const i = items.find(x => x.ref.id === ref.id);
+      if (i) i.quantity += qty;
+      else items.push({ ref, quantity: qty });
+      this.persist(items);
+      return [...items];
+    });
   }
 
   remove(id: string) {
-    this.items = this.items.filter(i => i.ref.id !== id);
-    this.sync();
+    this.items.update(items => {
+      const next = items.filter(i => i.ref.id !== id);
+      this.persist(next);
+      return next;
+    });
   }
 
   clear() {
-    this.items = [];
+    this.items.set([]);
     localStorage.removeItem(this.KEY);
-    this.subject.next([]);
   }
 
-  total(): number {
-    return this.items.reduce((t, i) => t + i.ref.price * i.quantity, 0);
+  private persist(items: CartItem[]) {
+    localStorage.setItem(this.KEY, JSON.stringify(items));
   }
 
-  snapshot(): CartItem[] {
-    return [...this.items];
+  private load(): CartItem[] {
+    try {
+      return JSON.parse(localStorage.getItem(this.KEY) ?? '[]');
+    } catch {
+      return [];
+    }
   }
 }

@@ -66,8 +66,9 @@ export class CartDrawerComponent {
   cart = inject(CartService);
   ui = inject(CartUiService);
 
-  cartItems = computed(() => this.cart.snapshot());
+  cartItems = this.cart.cart;
   total = computed(() =>
     this.cartItems().reduce((t, i) => t + i.ref.price * i.quantity, 0)
   );
+
 }
