@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductRepositoryService } from '../../core/services/product-repository.service';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { CartUiService } from '../../cart/cart-ui.service';
-import { toSignal } from '@angular/core/rxjs-interop'
+import { toSignal } from '@angular/core/rxjs-interop';
+
 @Component({
   selector: 'app-catalogo',
   standalone: true,
