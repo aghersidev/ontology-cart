@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { CartDrawerComponent } from "./cart-drawer/cart-drawer.component";
+import { CartDrawerComponent } from "./components/cart-drawer/cart-drawer.component";
 
 @Component({
   selector: 'app-root',

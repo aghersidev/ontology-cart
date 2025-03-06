@@ -1,5 +1,5 @@
-import { SchemaProduct } from '../shared/models/product.model';
-import { CartProductRef } from '../shared/models/cart.model';
+import { SchemaProduct } from '../../models/product.model';
+import { CartProductRef } from '../../models/cart.model';
 
 export function toCartRef(p: SchemaProduct & { id: string }): CartProductRef {
   if (!p.offers) throw new Error('Product without offer');

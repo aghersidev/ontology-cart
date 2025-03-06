@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap, catchError, throwError, map } from 'rxjs';
 import { CacheService } from './cache.service';
-import { SchemaProduct } from '../../shared/models/product.model';
+import { SchemaProduct } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'

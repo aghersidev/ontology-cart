@@ -1,8 +1,8 @@
 import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SchemaProduct, ClothingProduct, RestaurantMenuItem, GroceryProduct, isClothing, isMenuItem, isGrocery } from '../../models/product.model';
-import { CartService } from '../../../cart/cart.service';
-import { toCartRef } from '../../../cart/cart.mapper';
+import { CartService } from '../../services/cart/cart.service';
+import { toCartRef } from '../../services/cart/cart.mapper';
 
 @Component({
   selector: 'app-product-card',

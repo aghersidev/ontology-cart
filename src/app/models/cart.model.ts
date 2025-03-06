@@ -1,4 +1,4 @@
-import { Offer } from '../models/product.model';
+import { Offer } from './product.model';
 
 export interface CartProductRef {
   '@type': string;

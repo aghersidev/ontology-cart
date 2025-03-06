@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductRepositoryService } from '../../core/services/product-repository.service';
-import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
-import { CartUiService } from '../../cart/cart-ui.service';
+import { ProductRepositoryService } from '../../services/product-repository.service';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { CartUiService } from '../../services/cart/cart-ui.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

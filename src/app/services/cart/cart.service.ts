@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { CartItem, CartProductRef } from '../shared/models/cart.model';
+import { CartItem, CartProductRef } from '../../models/cart.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
