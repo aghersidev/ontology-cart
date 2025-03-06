@@ -1,32 +1,32 @@
 <article class="card h-100">
-      <img [src]="product().image?.[0] || 'assets/no-image.png'" 
-             class="card-img-top object-fit-cover" 
-             style="height: 180px;"
-             [alt]="product().name">
-             
-      <div class="card-body d-flex flex-column ">
-        
-        <h5 class="card-title">{{ product().name }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary"> {{ product()['@type'] }} </h6>
-          
-        <p class="card-text d-flex flex-column">
-            @if (clothingData(); as p) {
-              <span><strong>Size:</strong> {{ p.size }}</span>
-              <span><strong>Color:</strong> {{ p.color }}</span>
-          }
-          @if (menuData(); as p) {
-              <span><strong>Ingredients:</strong> {{ p.ingredients }}</span>
-          }
-          @if (groceryData(); as p) {
-              <span><strong>GTIN:</strong> {{ p.gtin13 }}</span>
-          }
-        </p>
+  <img [src]="product().image?.[0]"
+    default="/assets/no-image.png"
+    class="card-img-top object-fit-cover"
+    style="height: 180px;" [alt]="product().name">
 
-        <div class="d-flex justify-content-between align-items-center pt-2 mt-auto border-top border-dark-subtle">
-          <span class="fw-bold text-dark">
-            {{ product().offers?.price }} {{ product().offers?.priceCurrency }}
-          </span>
-          <button class="btn btn-sm btn-light border shadow-sm" (click)="addToCart()">Details</button>
-        </div>
-      </div>
-    </article>
+  <div class="card-body d-flex flex-column ">
+
+    <h5 class="card-title">{{ product().name }}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"> {{ product()['@type'] }} </h6>
+
+    <p class="card-text d-flex flex-column">
+      @if (clothingData(); as p) {
+      <span><strong>Size:</strong> {{ p.size }}</span>
+      <span><strong>Color:</strong> {{ p.color }}</span>
+      }
+      @if (menuData(); as p) {
+      <span><strong>Ingredients:</strong> {{ p.ingredients }}</span>
+      }
+      @if (groceryData(); as p) {
+      <span><strong>GTIN:</strong> {{ p.gtin13 }}</span>
+      }
+    </p>
+
+    <div class="d-flex justify-content-between align-items-center pt-2 mt-auto border-top border-dark-subtle">
+      <span class="fw-bold text-dark">
+        {{ product().offers?.price }} {{ product().offers?.priceCurrency }}
+      </span>
+      <button class="btn btn-sm btn-light border shadow-sm" (click)="addToCart()">Add to cart</button>
+    </div>
+  </div>
+</article>

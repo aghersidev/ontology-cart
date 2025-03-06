@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SchemaProduct, ClothingProduct, RestaurantMenuItem, GroceryProduct, isClothing, isMenuItem, isGrocery } from '../../models/product.model';
 import { CartService } from '../../services/cart/cart.service';
 import { toCartRef } from '../../services/cart/cart.mapper';
+import { DefaultImageDirective } from '../../directives/default-image.directive';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [DefaultImageDirective, CommonModule],
   templateUrl: "./product-card.component.html",
   styles: [`
     :host { display: block; width: 260px; }
@@ -19,10 +20,11 @@ export class ProductCardComponent {
   menuData = computed(() => isMenuItem(this.product()) ? this.product() as RestaurantMenuItem : null);
   groceryData = computed(() => isGrocery(this.product()) ? this.product() as GroceryProduct : null);
 
-  constructor(private cart: CartService) {}
+  constructor(private cart: CartService) { }
 
   addToCart() {
     const ref = toCartRef(this.product());
     this.cart.addToCart(ref);
     console.log('Added to cart:', ref);
-  }}
+  }
+}

@@ -33,7 +33,7 @@ import { CartUiService } from '../../services/cart/cart-ui.service';
 
         <footer>
           <div class="total">
-            Total: {{ total() }}
+            Total: {{ total() | currency:'EUR':'symbol':'1.2-2' }}
           </div>
           <button class="checkout" [disabled]="cartItems().length === 0">
             Checkout
