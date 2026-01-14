@@ -19,7 +19,7 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npx ng build --configuration production --base-href /
+      - run: npx ng build --configuration production --base-href /ontology-cart/
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
