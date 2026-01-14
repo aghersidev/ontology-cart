@@ -21,7 +21,7 @@ jobs:
       - run: npm ci
       - run: npx ng build --configuration production --base-href /
 
-      - run: echo "aghersi.dev" > dist/home/browser/CNAME
+      - run: echo "cart.aghersi.dev" > dist/home/browser/CNAME
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
